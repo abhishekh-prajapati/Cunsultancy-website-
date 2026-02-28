@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About NexusHive | Institutional HR Advisory</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- ABOUT PAGE RESPONSIVE --- */
+        .about-vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+        .about-team-grid  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .about-cta-flex   { display: flex; justify-content: space-between; align-items: center; }
+
+        /* --- FOUNDER SECTION --- */
+        .founder-section {
+            background: var(--color-navy);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,90,238,0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Professional founder grid */
+        .bhavya-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        /* Accent line safe padding on mobile */
+        .bhavya-photo-wrap {
+            position: relative;
+            padding-left: 20px; /* leaves space for accent line */
+        }
+        .bhavya-accent-line {
+            position: absolute;
+            top: 20px;
+            left: 4px;
+            width: 4px;
+            height: calc(100% - 40px);
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 960px) {
+            .bhavya-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            /* Full-width photo block on tablet/mobile */
+            .bhavya-photo-wrap {
+                padding-left: 0;
+                max-width: 100%;
+            }
+            .bhavya-accent-line {
+                display: none;
+            }
+            .bhavya-photo-wrap img {
+                height: 450px !important;
+                width: 100% !important;
+                object-fit: cover !important;
+                object-position: center 30% !important;
+                border-radius: 16px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bhavya-photo-wrap img {
+                height: 400px !important;
+                object-position: center 28% !important;
+            }
+            /* Stats wrap instead of cramped row */
+            .bhavya-stats {
+                flex-wrap: wrap;
+            }
+            .bhavya-stats > div {
+                min-width: calc(50% - 1px);
+                border-bottom: 1px solid var(--color-border);
+            }
+        }
+        .founder-tag {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 30px;
+            padding: 0.4rem 1.1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.8);
+            display: inline-block;
+        }
+
+        /* Photo */
+        .founder-photo {
+            display: flex;
+            justify-content: center;
+        }
+        .founder-photo-wrap {
+            position: relative;
+            width: 380px;
+            height: 460px;
+        }
+        .founder-photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 20px;
+            display: block;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+        .founder-ring {
+            position: absolute;
+            top: -16px; right: -16px;
+            width: 100%; height: 100%;
+            border: 3px solid var(--color-accent);
+            border-radius: 20px;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 900px) {
+            .about-vision-grid { gap: 3rem; }
+            .about-team-grid   { grid-template-columns: repeat(2, 1fr); }
+            .founder-grid      { grid-template-columns: 1fr; gap: 3rem; }
+            .founder-photo     { order: -1; }
+            .founder-photo-wrap { width: 260px; height: 320px; margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            .about-vision-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-team-grid   { grid-template-columns: 1fr; }
+            .about-cta-flex    { flex-direction: column; gap: 2rem; text-align: center; }
+            .founder-section   { padding: 60px 0; }
+            .founder-grid      { grid-template-columns: 1fr; gap: 2.5rem; }
+            .founder-photo     { order: -1; }
+            .founder-photo-wrap { width: 220px; height: 280px; margin: 0 auto; }
+            .founder-content h2 { font-size: 2rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-flex">
+                <a href="index.html" class="logo">Nexus<span>Hive</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section class="hero" style="background: white; height: auto; min-height: 60vh; display: flex; align-items: center; padding: 120px 0 60px;">
+            <div class="container">
+                <div class="hero-content" style="max-width: 800px;">
+                    <div class="reveal">
+                        <span class="tagline pill">Our Heritage & Methodology</span>
+                        <h1 style="margin-bottom: 2.5rem;">Bridging Speed With Institutional Discipline</h1>
+                        <p style="font-size: 1.25rem; line-height: 1.6; color: var(--color-text-muted);">NexusHive Solutions LLP was established to bring structural maturity to high-growth ventures, ensuring that operational complexity never outpaces legal and strategic governance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Values -->
+        <section class="services-section" style="background: var(--color-bg-alt);">
+            <div class="container">
+                <div class="about-vision-grid">
+                    <div class="reveal">
+                        <span class="tagline">The Structural Conviction</span>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Why Structural Maturity?</h2>
+                        <p style="margin-bottom: 1.5rem;">For many startups and scaling ventures, administrative overhead is often seen as a friction point. At NexusHive, we view it as the Organize-to-Scale engine. Without precise HR foundations and statutory clarity, growth becomes a liability.</p>
+                        <p>Our methodology focuses on creating invisible infrastructures—systems so robust and automated that founders are freed to focus entirely on their core mission, while we manage the complexity of workforce governance.</p>
+                    </div>
+                    <div class="reveal" style="background: white; padding: 3.5rem; border-radius: var(--radius); border-left: 6px solid var(--color-accent); box-shadow: 0 10px 30px rgba(0,0,0,0.03);">
+                        <h3 style="margin-bottom: 1.5rem;">Our North Star</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem;"><strong>Transparency:</strong> In every statutory filing and policy draft.</li>
+                            <li style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 1rem;"><strong>Precision:</strong> Elimination of errors in payroll and compliance.</li>
+                            <li><strong>Scale:</strong> Frameworks built not just for today, but for a 1000-person headcount.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founder Spotlight — Professional -->
+        <section style="background: white; padding: 100px 0; border-top: 1px solid var(--color-border);">
+            <div class="container">
+
+                <div class="section-head reveal" style="margin-bottom: 60px;">
+                    <span class="tagline">Our Principal Advisor</span>
+                    <h2>The Mind Behind NexusHive</h2>
+                </div>
+
+                <div class="bhavya-grid">
+
+                    <!-- LEFT: Photo -->
+                    <div class="reveal">
+                        <div class="bhavya-photo-wrap">
+                            <!-- Accent frame line -->
+                            <div class="bhavya-accent-line"></div>
+
+                            <!-- Photo -->
+                            <img src="img/image.png" alt="Miss Bhavya – Founder, NexusHive Solutions"
+                                 style="width:100%; height:420px; object-fit:cover; object-position:center top; border-radius:12px; display:block; box-shadow:0 16px 48px rgba(10,37,64,0.12);">
+
+                            <!-- Name plate below photo -->
+                            <div style="background:var(--color-navy); border-radius:0 0 12px 12px; padding:1.1rem 1.5rem; margin-top:-4px;">
+                                <p style="color:white; font-weight:700; font-size:1rem; margin:0;">Miss Bhavya</p>
+                                <p style="color:rgba(255,255,255,0.5); font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase; margin:3px 0 0;">Founder & Principal HR Advisor</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Content -->
+                    <div class="reveal stagger-2" style="display:flex; flex-direction:column; gap:1.8rem; justify-content:center;">
+
+                        <!-- Quote / intro -->
+                        <blockquote style="border-left:4px solid var(--color-accent); margin:0; padding:0 0 0 1.5rem;">
+                            <p style="font-size:1.2rem; font-style:italic; color:var(--color-navy); line-height:1.7; font-weight:500;">"Structural integrity in HR is not a luxury — it is the backbone that allows businesses to grow without breaking."</p>
+                        </blockquote>
+
+                        <!-- Bio -->
+                        <p style="color:var(--color-text-muted); font-size:0.98rem; line-height:1.85;">
+                            Miss Bhavya founded NexusHive Solutions with a singular conviction — to bring institutional HR discipline to India's fastest-growing enterprises. With deep expertise spanning statutory compliance, workforce governance, and organizational design, she has personally guided <strong style="color:var(--color-navy);">150+ entities</strong> through their structural transformation journeys.
+                        </p>
+
+                        <!-- Stats row -->
+                        <div class="bhavya-stats" style="display:flex; gap:0; border:1px solid var(--color-border); border-radius:12px; overflow:hidden;">
+                            <div style="flex:1; padding:1.25rem; text-align:center; border-right:1px solid var(--color-border);">
+                                <p style="font-size:2rem; font-weight:800; color:var(--color-accent); line-height:1; margin:0;">150+</p>
+                                <p style="font-size:0.7rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Entities Guided</p>
+                            </div>
+                            <div style="flex:1; padding:1.25rem; text-align:center; border-right:1px solid var(--color-border);">
+                                <p style="font-size:2rem; font-weight:800; color:var(--color-accent); line-height:1; margin:0;">15+</p>
+                                <p style="font-size:0.7rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Years Exp.</p>
+                            </div>
+                            <div style="flex:1; padding:1.25rem; text-align:center;">
+                                <p style="font-size:2rem; font-weight:800; color:var(--color-accent); line-height:1; margin:0;">100%</p>
+                                <p style="font-size:0.7rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Client Retention</p>
+                            </div>
+                        </div>
+
+                        <!-- Expertise -->
+                        <div>
+                            <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--color-text-muted); margin-bottom:0.75rem;">Areas of Expertise</p>
+                            <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">Labour Law Advisory</span>
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">HR Structuring</span>
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">Statutory Compliance</span>
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">Payroll Governance</span>
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">POSH Compliance</span>
+                                <span style="background:var(--color-bg-soft); border:1px solid var(--color-border); border-radius:6px; padding:0.35rem 0.9rem; font-size:0.8rem; font-weight:600; color:var(--color-navy);">Talent Strategy</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                            <a href="contact.html" class="btn-cta">Book a Consultation</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic CTA -->
+        <section style="background: var(--color-navy); padding: 80px 0; color: white;">
+            <div class="container">
+                <div class="about-cta-flex">
+                    <div style="max-width: 600px;">
+                        <h2 style="color: white; font-size: 2.25rem;">Scale Your Vision with Structural Safety</h2>
+                        <p style="color: rgba(255,255,255,0.6); margin-top: 1rem;">Let’s discuss how we can build your organizational foundation for the next decade of growth.</p>
+                    </div>
+                    <a href="contact.html" class="btn-cta">Start Your Journey</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Footer (Reference: Structured Maturity) -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-logo">Nexus<span>Hive</span></h3>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.95rem;">Premier HR advisory and statutory governance partner for high-growth enterprises across India.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="services.html">HR Strategy</a></li>
+                        <li><a href="services.html">Labour Law</a></li>
+                        <li><a href="services.html">Payroll Systems</a></li>
+                        <li><a href="services.html">POSH Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Intelligence</h4>
+                    <ul>
+                        <li><a href="about.html">Our Philosophy</a></li>
+                        <li><a href="#">Audit Readiness</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Engage</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@nexushive.com">info@nexushive.com</a></li>
+                        <li><a href="tel:+918041234567">+91 80 4123 4567</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusHive Solutions LLP. All Rights Reserved. | LLP Identity No: AAA-0000</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#" style="color: inherit;"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color: inherit;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Unique WhatsApp Widget -->
+    <a href="https://wa.me/918041234567" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+        <span class="wa-text">Need Guidance? Chat Now</span>
+        <div class="wa-icon-box">
+            <i class="fab fa-whatsapp"></i>
+            <div class="wa-pulse"></div>
+        </div>
+    </a>
+
+    <script src="js/main.js"></script>
+    <script>
+        (function(){const t=localStorage.getItem('nexushive-theme')||'';document.documentElement.setAttribute('data-theme',t);})();
+        const hamburger=document.getElementById('hamburger'),mobileNav=document.getElementById('mobileNav'),mobileClose=document.getElementById('mobileClose');
+        hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileNav.classList.toggle('open');document.body.style.overflow=mobileNav.classList.contains('open')?'hidden':''});
+        mobileClose.addEventListener('click',()=>{hamburger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow=''});
+        mobileNav.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{hamburger.classList.remove('open');mobileNav.classList.remove('open');document.body.style.overflow=''}));
+    </script>
+</body>
+</html>
